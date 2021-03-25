@@ -26,7 +26,7 @@ final class VisibleItemsProvider {
     calendar: Calendar,
     content: CalendarViewContent,
     size: CGSize,
-    layoutMargins: NSDirectionalEdgeInsets,
+    layoutMargins: CalendarDirectionEdgeInsets,
     scale: CGFloat,
     monthHeaderHeight: CGFloat,
     backgroundColor: UIColor?)
@@ -56,7 +56,7 @@ final class VisibleItemsProvider {
     frameProvider.size
   }
 
-  var layoutMargins: NSDirectionalEdgeInsets {
+  var layoutMargins: CalendarDirectionEdgeInsets {
     frameProvider.layoutMargins
   }
 

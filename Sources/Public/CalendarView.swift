@@ -42,11 +42,11 @@ public final class CalendarView: UIView {
   ///
   /// - Parameters:
   ///   - initialContent: The content to use when initially rendering `CalendarView`.
-  public init(initialContent: CalendarViewContent) {
+  public init(initialContent: CalendarViewContent, directionEdgeInsets: CalendarDirectionEdgeInsets) {
     content = initialContent
-
+    _calendarDirectionalLayoutMargins = directionEdgeInsets
     super.init(frame: .zero)
-
+    
     if #available(iOS 13.0, *) {
       backgroundColor = .systemBackground
     } else {
@@ -151,10 +151,12 @@ public final class CalendarView: UIView {
 
   /// `CalendarView` only supports positive values for `directionalLayoutMargins`. Negative values will be changed to
   /// `0`.
-  public override var directionalLayoutMargins: NSDirectionalEdgeInsets {
-    get { super.directionalLayoutMargins }
+  //TODO: will need handle remove forced wrap here
+  private var _calendarDirectionalLayoutMargins: CalendarDirectionEdgeInsets!
+  public var calendarDirectionalLayoutMargins: CalendarDirectionEdgeInsets {
+    get { _calendarDirectionalLayoutMargins }
     set {
-      super.directionalLayoutMargins = NSDirectionalEdgeInsets(
+      _calendarDirectionalLayoutMargins = CalendarDirectionEdgeInsets(
         top: max(newValue.top, 0),
         leading: max(newValue.leading, 0),
         bottom: max(newValue.bottom, 0),
@@ -476,7 +478,8 @@ public final class CalendarView: UIView {
     if
       let existingVisibleItemsProvider = _visibleItemsProvider,
       existingVisibleItemsProvider.size == bounds.size,
-      existingVisibleItemsProvider.layoutMargins == directionalLayoutMargins,
+//      existingVisibleItemsProvider.layoutMargins == directionalLayoutMargins,
+    existingVisibleItemsProvider.layoutMargins.isDirectionLayoutMargin(),
       existingVisibleItemsProvider.scale == scale,
       existingVisibleItemsProvider.backgroundColor == backgroundColor
     {
@@ -486,7 +489,7 @@ public final class CalendarView: UIView {
         calendar: calendar,
         content: content,
         size: bounds.size,
-        layoutMargins: directionalLayoutMargins,
+        layoutMargins: calendarDirectionalLayoutMargins,
         scale: scale,
         monthHeaderHeight: monthHeaderHeight(),
         backgroundColor: backgroundColor)
@@ -496,9 +499,13 @@ public final class CalendarView: UIView {
   }
 
   private var initialMonthHeaderAnchorLayoutItem: LayoutItem {
-    let offset = CGPoint(
-      x: scrollView.contentOffset.x + directionalLayoutMargins.leading,
-      y: scrollView.contentOffset.y + directionalLayoutMargins.top)
+    var x = scrollView.contentOffset.x
+    var y = scrollView.contentOffset.y
+    if #available(iOS 11.0, *) {
+      x += directionalLayoutMargins.leading
+      y += directionalLayoutMargins.top
+    }
+    let offset = CGPoint(x: x, y: y)
     return visibleItemsProvider.anchorMonthHeaderItem(
       for: content.monthRange.lowerBound,
       offset: offset,
@@ -516,13 +523,21 @@ public final class CalendarView: UIView {
     let offset: CGPoint
     switch scrollMetricsMutator.scrollAxis {
     case .vertical:
+      var x = scrollView.contentOffset.x
+      if #available(iOS 11.0, *) {
+        x += directionalLayoutMargins.leading
+      }
       offset = CGPoint(
-        x: scrollView.contentOffset.x + directionalLayoutMargins.leading,
+        x: x,
         y: scrollView.contentOffset.y)
     case .horizontal:
+      var y = scrollView.contentOffset.y
+      if #available(iOS 11.0, *) {
+        y += directionalLayoutMargins.top
+      }
       offset = CGPoint(
         x: scrollView.contentOffset.x,
-        y: scrollView.contentOffset.y + directionalLayoutMargins.top)
+        y: y)
     }
 
     switch scrollToItemContext.targetItem {
@@ -1063,7 +1078,11 @@ private final class NoContentInsetAdjustmentScrollView: UIScrollView {
 
   init() {
     super.init(frame: .zero)
-    contentInsetAdjustmentBehavior = .never
+    if #available(iOS 11.0, *) {
+      contentInsetAdjustmentBehavior = .never
+    } else {
+      // Fallback on earlier versions
+    }
   }
 
   required init?(coder: NSCoder) {
@@ -1072,6 +1091,7 @@ private final class NoContentInsetAdjustmentScrollView: UIScrollView {
 
   // MARK: Internal
 
+  @available(iOS 11.0, *)
   override var contentInsetAdjustmentBehavior: ContentInsetAdjustmentBehavior {
     didSet {
       super.contentInsetAdjustmentBehavior = .never

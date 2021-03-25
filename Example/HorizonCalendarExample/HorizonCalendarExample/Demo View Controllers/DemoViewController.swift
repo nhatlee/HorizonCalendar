@@ -22,7 +22,8 @@ class DemoViewController: UIViewController {
 
   let monthsLayout: MonthsLayout
 
-  lazy var calendarView = CalendarView(initialContent: makeContent())
+  lazy var calendarView = CalendarView(initialContent: makeContent(),
+                                       directionEdgeInsets: CalendarDirectionEdgeInsets(top: 0, leading: 0, bottom: 0 , trailing: 0))
   lazy var calendar = Calendar.current
   lazy var dayDateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()

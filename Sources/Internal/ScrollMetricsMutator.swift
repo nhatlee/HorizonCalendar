@@ -86,7 +86,12 @@ final class ScrollMetricsMutator {
   // of magnitude will start to cause rounding in the 3rd digit after the decimal point, due to a
   // loss of floating point precision.
   // Scrolling past 3 billion dates ought to be enough for anybody.
+  #if __IPHONE_11_0
   private static let ContentSize: CGFloat = 10_000_000_000_000
+  #else
+  private static let ContentSize: CGFloat = 1_000_000_000
+  #endif
+  
   private static let BoundlessStartInset = ContentSize
   private static let BoundlessEndInset: CGFloat = 0
 

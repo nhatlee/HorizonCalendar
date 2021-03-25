@@ -25,7 +25,7 @@ final class FrameProvider {
   init(
     content: CalendarViewContent,
     size: CGSize,
-    layoutMargins: NSDirectionalEdgeInsets,
+    layoutMargins: CalendarDirectionEdgeInsets,
     scale: CGFloat,
     monthHeaderHeight: CGFloat)
   {
@@ -56,7 +56,7 @@ final class FrameProvider {
   // MARK: Internal
 
   let size: CGSize
-  let layoutMargins: NSDirectionalEdgeInsets
+  let layoutMargins: CalendarDirectionEdgeInsets
   let scale: CGFloat
   let daySize: CGSize
 

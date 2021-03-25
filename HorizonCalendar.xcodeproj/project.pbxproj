@@ -56,6 +56,7 @@
 		93FA64EE248D7B0100A8B7B1 /* DayHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA64ED248D7B0100A8B7B1 /* DayHelperTests.swift */; };
 		93FA64F0248D84FE00A8B7B1 /* DayOfWeekPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA64EF248D84FE00A8B7B1 /* DayOfWeekPositionTests.swift */; };
 		93FA64F2248D93EA00A8B7B1 /* MonthRowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA64F1248D93EA00A8B7B1 /* MonthRowTests.swift */; };
+		DC76ED7C260C6F7E00EBD4D1 /* CalendarDirectionEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76ED7B260C6F7E00EBD4D1 /* CalendarDirectionEdgeInsets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		93FA64ED248D7B0100A8B7B1 /* DayHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHelperTests.swift; sourceTree = "<group>"; };
 		93FA64EF248D84FE00A8B7B1 /* DayOfWeekPositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfWeekPositionTests.swift; sourceTree = "<group>"; };
 		93FA64F1248D93EA00A8B7B1 /* MonthRowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthRowTests.swift; sourceTree = "<group>"; };
+		DC76ED7B260C6F7E00EBD4D1 /* CalendarDirectionEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDirectionEdgeInsets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 		93061FFB24F1AE1700177ECC /* Legacy CalendarItem Support */ = {
 			isa = PBXGroup;
 			children = (
+				DC76ED7B260C6F7E00EBD4D1 /* CalendarDirectionEdgeInsets.swift */,
 				93061FFC24F1AE1700177ECC /* CalendarViewContent+CalendarItem.swift */,
 				93061FFD24F1AE1700177ECC /* CalendarItem.swift */,
 			);
@@ -372,6 +375,7 @@
 				939E692A24837E0300A8BCC7 /* ItemViewReuseManager.swift in Sources */,
 				939E692524837E0300A8BCC7 /* LayoutItemTypeEnumerator.swift in Sources */,
 				938DA41124BEFFCB008A3B47 /* AnyCalendarItemModel.swift in Sources */,
+				DC76ED7C260C6F7E00EBD4D1 /* CalendarDirectionEdgeInsets.swift in Sources */,
 				939E692724837E0300A8BCC7 /* VisibleItemsProvider.swift in Sources */,
 				93061FFF24F1AE1700177ECC /* CalendarItem.swift in Sources */,
 				939E693024837E0300A8BCC7 /* FrameProvider.swift in Sources */,
@@ -572,7 +576,7 @@
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -606,7 +610,7 @@
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

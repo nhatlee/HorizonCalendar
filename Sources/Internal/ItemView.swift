@@ -26,7 +26,11 @@ final class ItemView: UIView {
 
     super.init(frame: .zero)
 
-    contentView.insetsLayoutMarginsFromSafeArea = false
+    if #available(iOS 11.0, *) {
+      contentView.insetsLayoutMarginsFromSafeArea = false
+    } else {
+      // Fallback on earlier versions
+    }
     addSubview(contentView)
 
     updateViewModel()
