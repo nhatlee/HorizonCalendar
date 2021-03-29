@@ -271,8 +271,8 @@ final class VisibleItemsProvider {
       let month: Month
       let calendarItemModel: InternalAnyCalendarItemModel
       switch layoutItem.itemType {
-      case .monthHeader(let _month):
-        month = _month
+      case .monthHeader(let newMonth):
+        month = newMonth
         calendarItemModel = self.content.monthHeaderItemModelProvider(month)
       case .day(let day):
         month = day.month

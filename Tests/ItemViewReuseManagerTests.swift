@@ -403,8 +403,8 @@ final class ItemViewReuseManagerTests: XCTestCase {
     reuseManager.viewsForVisibleItems(initialVisibleItems, viewHandler: { _, _, _ in })
 
     // Ensure the correct subset of views are reused given the subsequent visible items
-    var reuseCountsForDifferentiators = [_CalendarItemViewDifferentiator: Int]()
-    var newViewCountsForDifferentiators = [_CalendarItemViewDifferentiator: Int]()
+    var reuseCountsForDifferentiators = [CalendarItemViewDifferentiator: Int]()
+    var newViewCountsForDifferentiators = [CalendarItemViewDifferentiator: Int]()
     reuseManager.viewsForVisibleItems(
       subsequentVisibleItems,
       viewHandler: { _, item, previousBackingItem in
@@ -417,11 +417,11 @@ final class ItemViewReuseManagerTests: XCTestCase {
         }
       })
 
-    let expectedReuseCountsForDifferentiators: [_CalendarItemViewDifferentiator: Int] = [
+    let expectedReuseCountsForDifferentiators: [CalendarItemViewDifferentiator: Int] = [
       MockCalendarItemModel.variant0._itemViewDifferentiator: 2,
       MockCalendarItemModel.variant1._itemViewDifferentiator: 3,
     ]
-    let expectedNewViewCountsForDifferentiators: [_CalendarItemViewDifferentiator: Int] = [
+    let expectedNewViewCountsForDifferentiators: [CalendarItemViewDifferentiator: Int] = [
        MockCalendarItemModel.variant0._itemViewDifferentiator: 1,
        MockCalendarItemModel.variant1._itemViewDifferentiator: 2,
        MockCalendarItemModel.variant2._itemViewDifferentiator: 1,
@@ -501,15 +501,15 @@ private struct MockCalendarItemModel: AnyCalendarItemModel, Equatable {
     viewTypeDescription: "UILabel",
     invariantViewProperties: InvariantLabelPropertiesB(font: .systemFont(ofSize: 16), color: .blue))
 
-  var _itemViewDifferentiator: _CalendarItemViewDifferentiator
+  var itemViewDifferentiator: CalendarItemViewDifferentiator
 
-  func _makeView() -> UIView {
+  func makeView() -> UIView {
     UIView()
   }
 
-  func _setViewModel(onViewOfSameType view: UIView) { }
+  func setViewModel(onViewOfSameType view: UIView) { }
 
-  func _isViewModel(equalToViewModelOf other: AnyCalendarItemModel) -> Bool {
+  func isViewModel(equalToViewModelOf other: AnyCalendarItemModel) -> Bool {
     false
   }
 

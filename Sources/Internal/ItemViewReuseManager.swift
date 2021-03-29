@@ -32,7 +32,7 @@ final class ItemViewReuseManager {
       -> Void)
   {
     var visibleItemsDifferencesItemViewDifferentiators = [
-      _CalendarItemViewDifferentiator: Set<VisibleCalendarItem>
+      CalendarItemViewDifferentiator: Set<VisibleCalendarItem>
     ]()
 
     // For each reuse ID, track the difference between the new set of visible items and the previous
@@ -65,7 +65,7 @@ final class ItemViewReuseManager {
   // MARK: Private
 
   private var visibleItemsForItemViewDifferentiators = [
-    _CalendarItemViewDifferentiator: Set<VisibleCalendarItem>
+    CalendarItemViewDifferentiator: Set<VisibleCalendarItem>
   ]()
   private var viewsForVisibleItems = [VisibleCalendarItem: ItemView]()
 

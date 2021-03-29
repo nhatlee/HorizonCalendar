@@ -20,10 +20,10 @@ enum InternalAnyCalendarItemModel {
   case itemModel(AnyCalendarItemModel)
   case legacy(AnyCalendarItem)
 
-  var itemViewDifferentiator: _CalendarItemViewDifferentiator {
+  var itemViewDifferentiator: CalendarItemViewDifferentiator {
     switch self {
     case .itemModel(let itemModel):
-      return itemModel._itemViewDifferentiator
+      return itemModel.itemViewDifferentiator
     case .legacy(let legacyItem):
       return .legacyReuseIdentifier(legacyItem.reuseIdentifier)
     }
@@ -32,7 +32,7 @@ enum InternalAnyCalendarItemModel {
   var makeView: () -> UIView {
     switch self {
     case .itemModel(let itemModel):
-      return itemModel._makeView
+      return itemModel.makeView
     case .legacy(let legacyItem):
       return legacyItem.buildView
     }
@@ -41,7 +41,7 @@ enum InternalAnyCalendarItemModel {
   var setViewModelOnViewOfSameType: (UIView) -> Void {
     switch self {
     case .itemModel(let itemModel):
-      return itemModel._setViewModel(onViewOfSameType:)
+      return itemModel.setViewModel(onViewOfSameType:)
     case .legacy(let legacyItem):
       return legacyItem.updateViewModel(view:)
     }
@@ -59,7 +59,7 @@ enum InternalAnyCalendarItemModel {
   func isViewModelEqualToViewModelOfOther(_ other: Self) -> Bool {
     switch (self, other) {
     case let (.itemModel(lhsItemModel), .itemModel(rhsItemModel)):
-      return lhsItemModel._isViewModel(equalToViewModelOf: rhsItemModel)
+      return lhsItemModel.isViewModel(equalToViewModelOf: rhsItemModel)
     case let (.legacy(lhsLegacyItem), .legacy(rhsLegacyItem)):
       return lhsLegacyItem.isViewModel(equalToViewModelOf: rhsLegacyItem)
     default:

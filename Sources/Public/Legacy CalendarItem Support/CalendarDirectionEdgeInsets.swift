@@ -10,6 +10,10 @@ import Foundation
 import CoreGraphics
 import UIKit
 
+// CalendarDirectionEdgeInsets try to imitate to NSDirectionalEdgeInsets
+// But just have EdgeInsets: top, leading, bottom, trailing
+// layoutMargins always set to directionalLayoutMargins
+// So isDirectionLayoutMargin currently just return true in iOS 11
 public struct CalendarDirectionEdgeInsets {
   public var top: CGFloat // specify amount to inset (positive) for each of the edges. values can be negative to 'outset'
 
