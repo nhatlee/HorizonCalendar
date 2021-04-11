@@ -499,8 +499,9 @@ public final class CalendarView: UIView {
   }
 
   private var initialMonthHeaderAnchorLayoutItem: LayoutItem {
+    let headerTopPadding: CGFloat = 13
     var x = scrollView.contentOffset.x
-    var y = scrollView.contentOffset.y
+    var y = scrollView.contentOffset.y + headerTopPadding
     if #available(iOS 11.0, *) {
       x += directionalLayoutMargins.leading
       y += directionalLayoutMargins.top
@@ -607,7 +608,8 @@ public final class CalendarView: UIView {
       CGSize(width: monthWidth, height: 0),
       withHorizontalFittingPriority: .required,
       verticalFittingPriority: .fittingSizeLevel)
-    return size.height
+    let defaultMonthViewHeight: CGFloat = 43
+    return max(size.height, defaultMonthViewHeight)
   }
 
   private func updateVisibleViews(
