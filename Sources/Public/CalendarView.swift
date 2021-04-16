@@ -478,8 +478,7 @@ public final class CalendarView: UIView {
     if
       let existingVisibleItemsProvider = _visibleItemsProvider,
       existingVisibleItemsProvider.size == bounds.size,
-//      existingVisibleItemsProvider.layoutMargins == directionalLayoutMargins,
-    existingVisibleItemsProvider.layoutMargins.isDirectionLayoutMargin(),
+      existingVisibleItemsProvider.layoutMargins.isDirectionLayoutMargin(),
       existingVisibleItemsProvider.scale == scale,
       existingVisibleItemsProvider.backgroundColor == backgroundColor
     {
@@ -499,7 +498,7 @@ public final class CalendarView: UIView {
   }
 
   private var initialMonthHeaderAnchorLayoutItem: LayoutItem {
-    let headerTopPadding: CGFloat = 13
+    let headerTopPadding: CGFloat = 8
     var x = scrollView.contentOffset.x
     var y = scrollView.contentOffset.y + headerTopPadding
     if #available(iOS 11.0, *) {
