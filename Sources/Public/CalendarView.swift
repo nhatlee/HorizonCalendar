@@ -498,7 +498,7 @@ public final class CalendarView: UIView {
   }
 
   private var initialMonthHeaderAnchorLayoutItem: LayoutItem {
-    let headerTopPadding: CGFloat = 8
+    let headerTopPadding: CGFloat = 5
     var x = scrollView.contentOffset.x
     var y = scrollView.contentOffset.y + headerTopPadding
     if #available(iOS 11.0, *) {
