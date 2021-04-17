@@ -718,9 +718,10 @@ final class VisibleItemsProvider {
     if month == content.dayRange.lowerBound.month {
       switch content.monthsLayout {
       case .vertical(let options):
+        let topMonthHeaderPadding: CGFloat = 10
         minimumScrollOffset = monthFrame.minY -
           (options.pinDaysOfWeekToTop ? frameProvider.daySize.height : 0) -
-          layoutMargins.top
+          layoutMargins.top - topMonthHeaderPadding
       case .horizontal:
         minimumScrollOffset = monthFrame.minX - layoutMargins.leading
       }
